@@ -32,7 +32,7 @@ handlePress = async () => {
    <View style={{flex:1,paddingTop: 50, paddingLeft: 50, backgroundColor:'white' }}>
    <Text> Some other text </Text>
     <Text> Enter github user id  </Text>
-    <TextInput placeholder="enter number" style={{backgroundColor:'#acb233'}} onChangeText={(text)=>{this.setState({since:text})}}></TextInput>
+    <TextInput placeholder="enter number" style={{backgroundColor:'#acb233'}} onChangeText={(text)=>{this.setState({since:text-1})}}></TextInput>
     <TouchableOpacity onPress={this.handlePress}>
      <Text style={{paddingTop: 50, paddingLeft: 50, color: '#FF0000'}}> Click me to see the name </Text>
      </TouchableOpacity><ScrollView><TouchableOpacity style={{backgroundColor:'#acb233',margin:30}} onPress={()=>{Alert.alert(this.state.source)}}>
