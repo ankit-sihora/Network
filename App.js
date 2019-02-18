@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, View, ActivityIndicator, Text, Alert,Image,ScrollView} from 'react-native';
+import { TouchableOpacity, View, ActivityIndicator, Text, Alert,Image,ScrollView,TextInput} from 'react-native';
 export default class App extends Component {
   constructor(){
     super()
       this.state={
         source:'',
         flag:true,
-        num:100,
+        name:'',
+        since:55,
       }
     this.handlePress.bind(this)
   }
 
 handlePress = async () => {
-  fetch('https://api.github.com/users/ankit-sihora/repos',{method: 'GET'}
+  var since = "https://api.github.com/users?since="+this.state.since
+  fetch(since,{method: 'GET'}
       
   )
   .then(response => response.json()).then((responseJson)=>{
     //alert('Response'+JSON.stringify(responseJson[0].owner.avatar_url))
-    this.setState({source:responseJson[0].owner.avatar_url,flag:false,num:50})
+    this.setState({source:responseJson[0].avatar_url,flag:false,name:responseJson[0].login})
     alert(this.state.source)
   })
   .catch((error) => {
@@ -29,12 +31,13 @@ handlePress = async () => {
   return(
    <View style={{flex:1,paddingTop: 50, paddingLeft: 50, backgroundColor:'white' }}>
    <Text> Some other text </Text>
-    <Text> Some other text </Text>
+    <Text> Enter github user id  </Text>
+    <TextInput placeholder="enter number" style={{backgroundColor:'#acb233'}} onChangeText={(text)=>{this.setState({since:text})}}></TextInput>
     <TouchableOpacity onPress={this.handlePress}>
      <Text style={{paddingTop: 50, paddingLeft: 50, color: '#FF0000'}}> Click me to see the name </Text>
-     </TouchableOpacity><ScrollView><TouchableOpacity style={{backgroundColor:'green',margin:30}} onPress={()=>{Alert.alert(this.state.source)}}>
-     {(!this.state.flag)?
-    <Image style={{height:100,width:100}} source={{url:this.state.source}}></Image>:(<View></View>)}</TouchableOpacity></ScrollView>
+     </TouchableOpacity><ScrollView><TouchableOpacity style={{backgroundColor:'#acb233',margin:30}} onPress={()=>{Alert.alert(this.state.source)}}>
+     {(!this.state.flag)?<View style={{flexDirection:'row',justifyContent:'space-around', alignItems:'center'}}>
+    <Image style={{height:100,width:100}} source={{url:this.state.source}}></Image><Text style={{fontSize:24}}>{this.state.name}</Text></View>:(<View></View>)}</TouchableOpacity></ScrollView>
 </View> 
   );
 }
