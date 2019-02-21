@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ImagePickerProject from './Upload'
 import { TouchableOpacity, View, ActivityIndicator, Text, Alert,Image,ScrollView,TextInput} from 'react-native';
 export default class App extends Component {
   constructor(){
@@ -37,7 +38,8 @@ handlePress = async () => {
      <Text style={{paddingTop: 50, paddingLeft: 50, color: '#FF0000'}}> Click me to see the name </Text>
      </TouchableOpacity><ScrollView><TouchableOpacity style={{backgroundColor:'#acb233',margin:30}} onPress={()=>{Alert.alert(this.state.source)}}>
      {(!this.state.flag)?<View style={{flexDirection:'row',justifyContent:'space-around', alignItems:'center'}}>
-    <Image style={{height:100,width:100}} source={{uri:this.state.source}}></Image><Text style={{fontSize:24}}>{this.state.name}</Text></View>:(<View></View>)}</TouchableOpacity></ScrollView>
+    <Image style={{height:100,width:100}} source={{uri:this.state.source}}></Image><Text style={{fontSize:24}}>{this.state.name}</Text></View>:(<View></View>)}</TouchableOpacity>
+    <ImagePickerProject></ImagePickerProject></ScrollView>
 </View> 
   );
 }
