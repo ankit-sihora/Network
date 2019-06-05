@@ -56,3 +56,6 @@ buck-out/
 *.jsbundle
 #personal
 /ankit_gitignore.js
+
+/gp.txt
+
